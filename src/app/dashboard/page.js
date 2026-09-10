@@ -22,7 +22,7 @@ export default async function Dashboard() {
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-8">
           <FormButton
             username={session.user.name || "User"}
-            email={session.user.email || "user@example.com"}
+            email={session.user.email || "user123@example.com"}
           />
         </div>
       </div>
