@@ -18,7 +18,15 @@ export default async function Home() {
             {user ? (
               <>
                 <span className="text-white">Welcome, {user.name}!</span>
-                <LogoutButton />
+                <div className="flex items-center gap-3 p-8">
+                  <Link
+                    href="/admin"
+                    className="text-white/70 hover:text-white transition"
+                  >
+                    Admin
+                  </Link>
+                  <LogoutButton />
+                </div>
               </>
             ) : (
               <>
@@ -66,7 +74,7 @@ export default async function Home() {
           <div className="flex items-center justify-center gap-4 mt-9 flex-wrap">
             {user ? (
               <Link
-                href="/register"
+                href="/dashboard"
                 className="btn-amber rounded-xl px-7 py-3 text-sm"
               >
                 Start Managing Tasks →
