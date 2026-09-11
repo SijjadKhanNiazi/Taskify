@@ -33,7 +33,7 @@ export default async function Home() {
                   href="/register"
                   className="btn-amber rounded-xl px-5 py-2.5 text-sm"
                 >
-                  Get Started
+                  Lets Get Started
                 </Link>
               </>
             )}
