@@ -36,3 +36,22 @@ export async function createTask(formData) {
     throw new Error("Failed to create task");
   }
 }
+
+export async function toggleTask(taskId) {
+  const session = await auth();
+
+  if (!session?.user) {
+    throw new Error("Unauthorized");
+  }
+  await ConnectDb();
+
+  const task = await Task.findOne({ _id: taskId, user: session.user.id });
+
+  if (!task) {
+    throw new Error("Task not found");
+  }
+  task.completed = !task.completed;
+  await task.save();
+  revalidatePath("/dashboard");
+  console.log("Task toggled successfully");
+}

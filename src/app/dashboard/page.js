@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import LogoutButton from "./components/LogoutButton";
 import Task from "@/models/Task";
 import ConnectDb from "@/lib/connDb";
+import TaskItem from "./components/TaskItem";
 
 export default async function Dashboard() {
   const session = await auth();
@@ -96,32 +97,15 @@ export default async function Dashboard() {
         ) : (
           <div className="space-y-3">
             {tasks.map((task) => (
-              <div
+              <TaskItem
                 key={task._id.toString()}
-                className="flex items-start justify-between p-4 rounded-xl bg-white/5 border border-white/10 hover:border-white/20 transition-all"
-              >
-                <div className="space-y-1 pr-4">
-                  <h3
-                    className={`font-semibold text-white ${task.completed ? "line-through text-white/40" : ""}`}
-                  >
-                    {task.title}
-                  </h3>
-                  <p className="text-sm text-white/60 leading-relaxed">
-                    {task.description}
-                  </p>
-                </div>
-                <div>
-                  <span
-                    className={`text-xs px-2.5 py-1 rounded-full font-medium whitespace-nowrap ${
-                      task.completed
-                        ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30"
-                        : "bg-amber-500/20 text-amber-300 border border-amber-500/30"
-                    }`}
-                  >
-                    {task.completed ? "Completed" : "Pending"}
-                  </span>
-                </div>
-              </div>
+                task={{
+                  _id: task._id.toString(),
+                  title: task.title,
+                  description: task.description,
+                  completed: task.completed,
+                }}
+              />
             ))}
           </div>
         )}
